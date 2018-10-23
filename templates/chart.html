@@ -7,12 +7,74 @@
     <title>Bar Charts with Bokeh</title>
     <link href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.5.min.css" rel="stylesheet">
     <link href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.0.min.css" rel="stylesheet">
+    <link href="../static/css/test-popup.css" rel="stylesheet">
 </head>
 <body>
+        <script src="../static/js/jquery.js"></script>
+        <script src="../static/js/test-popup.js"></script>
+        <script>
+                $(document).on("click", "#js_download_csv", function(){
+                
+                    var item = {};
+       
+                $.ajax({
+                        type:"GET",
+                        url:"/data",
+                        data:item,
+                        dataType:"json",
+                        success:function(res){
+            //                debugger
+                            console.log(res);
+                            
+                        }
+                    });
+
+            });
+           
+                $(document).on("click", "#js_download_csvfile", function(){
+                
+                    var item = {};
+       
+                $.ajax({
+                        type:"GET",
+                        url:"/datafile",
+                        data:item,
+                        dataType:"json",
+                        success:function(res){
+            //                debugger
+                            console.log(res);
+                            
+                        }
+                    });
+
+            });
+            </script>
     <h1>Bugs found over the past {{bars_count}} days</h1>
     {{ the_div|safe }}
     <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.5.min.js"></script>
     <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.5.min.js"></script>
     {{ the_script|safe }}
+
+    <div>
+        <button type="button" class="btn btn-primary" id="js_download_csv">Download CSV1</button>
+
+    </div>
+    <div>
+        <button type="button" class="btn btn-primary" id="js_download_csvfile">Download CSV file</button>
+
+    </div>
+    <div id="data_view"></div>
+
+    <div class="hover_bkgr_fricc">
+    <span class="helper"></span>
+    <div>
+        <div class="popupCloseButton">X</div>
+        <p>Please Enter new Description</p>
+        <input id="id_index" placeholder="Enter indice">
+        <input id="id_description" placeholder="Enter Description">
+        <button type="submit">Update Description</button>
+    </div>
+</div>
+
 </body>
 </html>
